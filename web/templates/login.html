@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link rel="stylesheet" href="static/css/login.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login page</title>
+</head>
+<body>
+    <div class="grid">
+        <form action="/auth" method="POST" class="form login">
+            <div class="form__field">
+                <input id="login__username" type="text" name="login" class="form__input" placeholder="Username" required="">
+            </div>
+            <div class="form__field">
+                <input id="login__password" type="password" name="password" class="form__input" placeholder="Password" required="">
+            </div>
+            <div class="form__field">
+                <input type="submit" value="Войти">
+            </div>
+        </form>
+        <!-- <p class="text--center">Not a member? <a href="#">Sign up now</a> <svg class="icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="assets/images/icons.svg#arrow-right"></use></svg></p> -->
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
+
+</body>
+</html>
