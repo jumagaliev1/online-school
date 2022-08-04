@@ -20,6 +20,7 @@ type User struct {
 }
 
 type Item struct {
+	Id    int
 	Title string
 	Link  string
 }
@@ -116,6 +117,30 @@ func (h *Handler) AddAdmin(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(w, r, "/admin", http.StatusFound)
 
 }
+func (h *Handler) AddVideo(w http.ResponseWriter, r *http.Request) {
+	result, err := h.DB.Exec(
+		"INSERT INTO items (`title`, `link`) VALUES (?, ?)",
+		r.FormValue("title"),
+		r.FormValue("link"),
+	)
+	if err != nil {
+		panic(err)
+	}
+
+	affected, err := result.RowsAffected()
+	if err != nil {
+		panic(err)
+	}
+	lastID, err := result.LastInsertId()
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Println("Insert - RowsAffected", affected, "LastInsertId: ", lastID)
+
+	http.Redirect(w, r, "/admin", http.StatusFound)
+
+}
 
 func (h *Handler) Head(w http.ResponseWriter, r *http.Request) {
 	session, err := r.Cookie("session_id")
@@ -128,13 +153,13 @@ func (h *Handler) Head(w http.ResponseWriter, r *http.Request) {
 	row.Scan(&id, &login)
 	items := []*Item{}
 
-	rows, err := h.DB.Query("SELECT title, link FROM items")
+	rows, err := h.DB.Query("SELECT id, title, link FROM items")
 	if err != nil {
 		panic(err)
 	}
 	for rows.Next() {
 		post := &Item{}
-		err = rows.Scan(&post.Title, &post.Link)
+		err = rows.Scan(&post.Id, &post.Title, &post.Link)
 		if err != nil {
 			panic(err)
 		}

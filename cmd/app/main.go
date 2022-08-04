@@ -7,6 +7,7 @@ import (
 	"online-school/main/internal/handler"
 	"online-school/main/internal/middleware"
 	"online-school/main/internal/server"
+	"os"
 
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/gorilla/mux"
@@ -34,12 +35,15 @@ func main() {
 	r.Handle("/", authMiddleware).Methods("GET")
 	r.HandleFunc("/logout", handlers.Logout).Methods("GET")
 	r.HandleFunc("/addAdmin", handlers.AddAdmin).Methods("POST")
+	r.HandleFunc("/addVideo", handlers.AddVideo).Methods("POST")
+
 	r.Handle("/admin", adminMiddleware).Methods("GET")
 	//r.Handle("/web/", http.StripPrefix("/web/", http.FileServer(http.Dir("./web"))))
 	r.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir("./web"))))
 	//http.Handle("/css/", http.StripPrefix("/css/", http.FileServer(http.Dir("./web/css"))))
 
-	port := "8081"
+	port := "8080"
+	port = os.Getenv("PORT")
 	server.ServeHTTP(r, port)
 
 }

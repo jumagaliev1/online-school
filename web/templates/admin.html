@@ -26,9 +26,11 @@
               </li>
               <!-- Button trigger modal -->
             <button type="button" class="btn" data-bs-toggle="modal" style="background-color: #ea4c88; color: #eee; margin-left: 5px;" data-bs-target="#exampleModal">
-                Добавить
+                Добавить польз.
             </button>
-                        
+            <button type="button" class="btn" data-bs-toggle="modal" style="background-color: #ea4c88; color: #eee; margin-left: 5px;" data-bs-target="#addVideo">
+              Добавить видео
+          </button>
             </ul>
             <form action="/logout" class="d-flex">
               <button class="btn btn-outline-danger" type="submit">Выйти</button>
@@ -63,7 +65,7 @@
     <div class="modal-dialog">
       <div class="modal-content" style="background-color: #15191b;">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Добавить пользователя</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -73,6 +75,35 @@
                 </div>
                 <div class="form__field">
                     <input id="login__password" type="password" name="password" class="form__input" placeholder="Password" required="">
+                </div>
+                <!-- <div class="form__field">
+                    <input type="submit" value="Sign In">
+                </div> -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-success">Сохранить</button>
+                    
+                  </div>
+            </form>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="addVideo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content" style="background-color: #15191b;">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Добавить видео</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form action="/addVideo" method="POST" class="form login">
+                <div class="form__field">
+                    <input id="login__username" type="text" name="title" class="form__input" placeholder="Title" required="">
+                </div>
+                <div class="form__field">
+                    <input id="login__password" type="text" name="link" class="form__input" placeholder="Link" required="">
                 </div>
                 <!-- <div class="form__field">
                     <input type="submit" value="Sign In">

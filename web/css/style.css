@@ -13,3 +13,6 @@ body {
 .mid {
     padding-top: 20px;
 }
+:root {
+    --plyr-color-main:#d44179;
+}
